@@ -226,7 +226,7 @@ type = custom/text
 content =" " 
 content-padding = 2
 click-left = systemctl poweroff
-click-right = systemctl restart
+click-right = systemctl reboot
 content-foreground = #f25287
 
 [module/wlan]
