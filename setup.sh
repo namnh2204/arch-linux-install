@@ -147,6 +147,7 @@ def installDotFiles():
     os.system(f'cp -rf {os.getcwd()}/.Xre* /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.xi* /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.tmux.conf /home/{username}/')
+    os.system(f'cp -rf {os.getcwd()}/.zshrc /home/{username}/')
     os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/')
     pause()
 
@@ -179,9 +180,9 @@ def main():
     installRegularPackages()
     installYayAurHelper()
     installAurPkgs()
-    installDotFiles()
     installTmuxPluginManager()
     postInstallZsh()
+    installDotFiles()
     showFinalMessage()
     
 
