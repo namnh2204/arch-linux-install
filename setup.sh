@@ -146,7 +146,7 @@ def installDotFiles():
     os.system(f'cp -rf {os.getcwd()}/.config/* /home/{username}/.config')
     os.system(f'cp -rf {os.getcwd()}/.Xre* /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.xi* /home/{username}/')
-    os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/wall')
+    os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/')
     pause()
 
 
