@@ -146,6 +146,7 @@ def installDotFiles():
     os.system(f'cp -rf {os.getcwd()}/.config/* /home/{username}/.config')
     os.system(f'cp -rf {os.getcwd()}/.Xre* /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.xi* /home/{username}/')
+    os.system(f'cp -rf {os.getcwd()}/.tmux.conf /home/{username}/')
     os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/')
     pause()
 
@@ -153,6 +154,17 @@ def installDotFiles():
 def updateAndUpgrade():
     cprint('\r\n:: Update and Upgrading your system...', fg='y', style='b')
     os.system('sudo pacman --noconfirm -Syyu')
+
+def installTmuxPluginManager():
+    cprint('\r\n:: Install Tmux Plugin Manager...', fg='y', style='b')
+    os.system('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm') 
+    pause()
+
+def postInstallZsh():
+    cprint('\r\n:: Install ohmyzsh...', fg='y', style='b')
+    os.system('<Del>sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+    cprint('\r\n:: Install zsh-autosuggestions...', fg='y', style='b')
+    os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
 
 def showFinalMessage():
     cprint('\r\n:: Everything ok...', fg='y', style='b')
@@ -168,7 +180,9 @@ def main():
     installYayAurHelper()
     installAurPkgs()
     installDotFiles()
-    # showFinalMessage()
+    installTmuxPluginManager()
+    postInstallZsh()
+    showFinalMessage()
     
 
 if __name__ == "__main__":
