@@ -1,17 +1,16 @@
 #  ------ programs  -------- # 
 
 super + Return
-    ~/.local/bin/./st_settings && st
+    alacritty
 
 super + t
-    alacritty
+    QT_IM_MODULE=ibus telegram-desktop
 
 super + c
     rofi -show drun
 
-super + n
-    bash ~/.local/bin/vi_padding
-
+super + f
+    firefox
 # reload config (bspwmrc and sxhkdrc)  # 
 
 super + shift + r

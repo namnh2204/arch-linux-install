@@ -51,3 +51,4 @@ fi
 setxkbmap ch &
 picom -f &
 exec bspwm
+ibus-daemon -drxR
