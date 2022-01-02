@@ -214,7 +214,7 @@ format-prefix-foreground = #d19a66
 
 [module/updates]
 type = custom/script
-exec = doas xbps-install -S > /dev/null 2>&1; xbps-install -un | wc -l
+exec = yay -Sy > /dev/null; (checkupdates; yay -Qum) | wc -l
 format = <label>
 interval = 4600 
 label =  %output%  
