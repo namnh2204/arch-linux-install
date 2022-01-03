@@ -75,10 +75,6 @@ plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-# ibus-bamboo
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
