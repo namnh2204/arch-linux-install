@@ -9,8 +9,11 @@ super + t
 super + c
     rofi -show drun
 
-super + f
+super + b
     firefox
+
+super + f
+    pcmanfm
 # reload config (bspwmrc and sxhkdrc)  # 
 
 super + shift + r
