@@ -18,7 +18,6 @@
 
 [colors]
 background = ${xrdb:background}
-;foreground = #676b73 
 foreground = ${xrdb:foreground}
 
 color0 = ${xrdb:color0}
@@ -41,8 +40,8 @@ dark-light = #272A2B
 active-light = #313435
 
 [bar/example]
-tray-position = right
-monitor = eDP1
+tray-position = center
+monitor = HDMI-0
 width =  100%
 height = 18
 padding-left =1
@@ -61,7 +60,7 @@ wm-restack = bspwm
 
 modules-left = round-left bspwm round-right empty-space  round-left polywins round-right
 modules-center =  
-modules-right = alsa round-left cpu round-right updates wlan mem round-left time  round-right  powermenu
+modules-right = alsa round-left cpu round-right updates wlan round-left network round-right mem round-left time round-right powermenu
 font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;3
 font-1 = JetBrainsMono Nerd Font:size=14;4
 font-2 = Material Design Icons:style=Bold:size=9;3
@@ -207,14 +206,14 @@ label = %date%%time%
 type = custom/script
 exec = free -m | sed -n 's/^Mem:\s\+[0-9]\+\s\+\([0-9]\+\)\s.\+/\1/p'
 format = <label>
-format-prefix = "﬙ " 
+format-prefix = " ﬙ " 
 label = %output% MB
 label-padding = 1
 format-prefix-foreground = #d19a66
 
 [module/updates]
 type = custom/script
-exec = yay -Sy > /dev/null; (checkupdates; yay -Qum) | wc -l
+exec = sleep 3; yay -Sy > /dev/null; (checkupdates; yay -Qum) | wc -l
 format = <label>
 interval = 4600 
 label =  %output%  
@@ -228,6 +227,37 @@ content-padding = 2
 click-left = systemctl poweroff
 click-right = systemctl reboot
 content-foreground = #f25287
+
+[module/network]
+type = internal/network
+interface = enp30s0
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices like USB network adapters have 
+; an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+label-connected = %{F#A3BE8C}ﯱ%downspeed%
+label-disconnected = %{F#ff9b93}%downspeed% 
+
 
 [module/wlan]
 type = internal/network
