@@ -49,6 +49,8 @@ unset TERMCAP
 # Man is much better than us at figuring this out
 unset MANPATH
 
+light-locker &
+
 # ibus-bamboo
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus

@@ -14,6 +14,11 @@ super + b
 
 super + f
     pcmanfm
+
+# lock screen
+super + l
+    light-locker-command -l
+
 # reload config (bspwmrc and sxhkdrc)  # 
 
 super + shift + r
