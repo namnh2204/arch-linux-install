@@ -158,6 +158,13 @@ def installDotFiles():
     pause()
 
 
+def setupLightDM():
+    cprint('\r\n:: Configuration LightDM...', fg='y', style='b')
+    os.system(f'sudo cp -rf {os.getcwd()}/wall/neon.png /usr/share/pixmaps/')
+    os.system(f'sudo cp -rf {os.getcwd()}/lightdm/lightdm.conf /etc/lightdm/')
+    os.system(f'sudo cp -rf {os.getcwd()}/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/')
+
+
 def updateAndUpgrade():
     cprint('\r\n:: Update and Upgrading your system...', fg='y', style='b')
     os.system('sudo pacman --noconfirm -Syyu')
@@ -189,6 +196,7 @@ def main():
     installTmuxPluginManager()
     postInstallZsh()
     installDotFiles()
+    setupLightDM()
     showFinalMessage()
     
 
