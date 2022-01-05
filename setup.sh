@@ -8,6 +8,11 @@ import subprocess as sp
 cp = configparser.ConfigParser(allow_no_value=True)
 cp.read('packages.ini')
 username = sp.getoutput('whoami')
+#proxy = 'http://10.61.11.42:3128'
+#os.environ['http_proxy']=proxy
+#os.environ['https_proxy']=proxy
+#os.environ['HTTP_PROXY']=proxy
+#os.environ['HTTPS_PROXY']=proxy
 
 
 def cprint( fmt, fg=None, bg=None, style=None ):
@@ -134,7 +139,7 @@ def installAurPkgs():
     for pkg in cp['AUR']:
         os.system(f'yay --noconfirm -S {pkg}')
 
-    pause()
+    #pause()
 
 
 def installDotFiles():
@@ -148,6 +153,7 @@ def installDotFiles():
     os.system(f'cp -rf {os.getcwd()}/.xi* /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.tmux.conf /home/{username}/')
     os.system(f'cp -rf {os.getcwd()}/.zshrc /home/{username}/')
+    os.system(f'cp -rf {os.getcwd()}/.xprofie /home/{username}/')
     os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/')
     pause()
 
