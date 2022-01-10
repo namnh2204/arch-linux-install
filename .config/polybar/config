@@ -60,7 +60,7 @@ wm-restack = bspwm
 
 modules-left = round-left bspwm round-right empty-space  round-left polywins round-right
 modules-center =  
-modules-right = alsa network round-left cpu round-right wlan mem round-left time round-right powermenu
+modules-right = alsa network round-left cpu round-right wlan mem round-left popup-calendar round-right powermenu
 font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=9;3
 font-1 = JetBrainsMono Nerd Font:size=14;4
 font-2 = Material Design Icons:style=Bold:size=9;3
@@ -189,18 +189,14 @@ bar-volume-empty-font = 2
 bar-volume-empty-foreground = #565c64
 format-volume-padding = 2
 
-[module/time]
-type = internal/date
-interval = 60
 
-format = <label>
+[module/popup-calendar]
+type = custom/script
+exec = ~/.config/polybar/scripts/popup-calendar.sh
+interval = 5
 format-background = #2a2e36
 format-foreground = #82868e
-
-date = 󰥔 %H:%M%{F-}
-time-alt = 󰃭 %a, %b %d%{F-}
-
-label = %date%%time%
+click-left = ~/.config/polybar/scripts/popup-calendar.sh --popup &
 
 [module/mem]
 type = custom/script
