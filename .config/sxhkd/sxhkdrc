@@ -12,11 +12,11 @@ super + c
 super + b
     firefox
 
-super + f
+super + e
     pcmanfm
 
 # lock screen
-super + l
+ctrl + shift + l
     light-locker-command -l
 
 # reload config (bspwmrc and sxhkdrc)  # 
