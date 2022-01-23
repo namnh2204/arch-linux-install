@@ -91,13 +91,7 @@ def cmd(parameter):
     
 
 def pause():
-    time.sleep(3)
-
-
-def saveLxdmConf():
-    with open('lxdm.conf', 'w') as configfile:
-        lxdmCp.write(configfile)
-
+    time.sleep(1)
 
 
 def showWelcomeScreen():
@@ -105,13 +99,6 @@ def showWelcomeScreen():
     cprint(':: Arch-Linux Installer ::', fg='g', style='b')
     cprint('https://github.com/namnh2204/arch-linux-install', fg='c', style='b')
     cprint('===========================================================', fg='y', style='b')
-    pause()
-
- 
-
-def installXorg():
-    cprint('\r\n\r\n:: Installing xorg...', fg='y', style='b')    
-    os.system('sudo pacman --noconfirm -S xorg')
     pause()
 
 
@@ -139,27 +126,20 @@ def installAurPkgs():
     for pkg in cp['AUR']:
         os.system(f'yay --noconfirm -S {pkg}')
 
-    #pause()
+    pause()
 
 
 def installDotFiles():
     # if ~/.config not exists, so create
     cprint('\r\n:: Installing dotfiles...', fg='y', style='b')
-    if(not os.path.isdir(f'/home/{username}/.config')):
-        os.mkdir(f'/home/{username}/.config')
-    
-    os.system(f'cp -rf {os.getcwd()}/.config/* /home/{username}/.config')
-    os.system(f'cp -rf {os.getcwd()}/.Xre* /home/{username}/')
-    os.system(f'cp -rf {os.getcwd()}/.xi* /home/{username}/')
-    os.system(f'cp -rf {os.getcwd()}/.tmux.conf /home/{username}/')
-    os.system(f'cp -rf {os.getcwd()}/.zshrc /home/{username}/')
-    os.system(f'cp -rf {os.getcwd()}/.xprofie /home/{username}/')
-    os.system(f'mkdir -p /home/{username}/Pictures/wall && cp -rf {os.getcwd()}/wall /home/{username}/Pictures/')
+    os.system('git clone https://github.com/namnh2204/dotfiles.git ~/')
     pause()
 
 
 def setupLightDM():
     cprint('\r\n:: Configuration LightDM...', fg='y', style='b')
+    os.system(f'sudo systemctl start lightdm')
+    os.system(f'sudo systemctl enable lightdm')
     os.system(f'sudo cp -rf {os.getcwd()}/wall/neon.png /usr/share/pixmaps/')
     os.system(f'sudo cp -rf {os.getcwd()}/lightdm/lightdm.conf /etc/lightdm/')
     os.system(f'sudo cp -rf {os.getcwd()}/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/')
@@ -169,16 +149,19 @@ def updateAndUpgrade():
     cprint('\r\n:: Update and Upgrading your system...', fg='y', style='b')
     os.system('sudo pacman --noconfirm -Syyu')
 
+
 def installTmuxPluginManager():
     cprint('\r\n:: Install Tmux Plugin Manager...', fg='y', style='b')
     os.system('git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm') 
     pause()
 
+
 def postInstallZsh():
     cprint('\r\n:: Install ohmyzsh...', fg='y', style='b')
-    os.system('<Del>sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+    os.system('sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
     cprint('\r\n:: Install zsh-autosuggestions...', fg='y', style='b')
     os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
+
 
 def showFinalMessage():
     cprint('\r\n:: Everything ok...', fg='y', style='b')
@@ -188,16 +171,15 @@ def showFinalMessage():
 
 def main():
     showWelcomeScreen()
-    updateAndUpgrade()
-    installXorg()
-    installRegularPackages()
-    installYayAurHelper()
-    installAurPkgs()
-    installTmuxPluginManager()
+    #updateAndUpgrade()
+    #installRegularPackages()
+    #installYayAurHelper()
+    #installAurPkgs()
+    #installTmuxPluginManager()
     postInstallZsh()
-    installDotFiles()
-    setupLightDM()
-    showFinalMessage()
+    #installDotFiles()
+    #setupLightDM()
+    #showFinalMessage()
     
 
 if __name__ == "__main__":
