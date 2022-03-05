@@ -156,12 +156,9 @@ def installTmuxPluginManager():
     pause()
 
 
-def postInstallZsh():
-    cprint('\r\n:: Install ohmyzsh...', fg='y', style='b')
-    os.system('sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
-    cprint('\r\n:: Install zsh-autosuggestions...', fg='y', style='b')
-    os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
-
+def installSdkMan():
+    cprint('\r\n:: Install SDK Manager...', fg='y', style='b')
+    os.system('curl -s "https://get.sdkman.io" | bash')
 
 def showFinalMessage():
     cprint('\r\n:: Everything ok...', fg='y', style='b')
@@ -171,15 +168,15 @@ def showFinalMessage():
 
 def main():
     showWelcomeScreen()
-    #updateAndUpgrade()
-    #installRegularPackages()
-    #installYayAurHelper()
-    #installAurPkgs()
-    #installTmuxPluginManager()
-    postInstallZsh()
-    #installDotFiles()
-    #setupLightDM()
-    #showFinalMessage()
+    updateAndUpgrade()
+    installRegularPackages()
+    installYayAurHelper()
+    installAurPkgs()
+    installTmuxPluginManager()
+    installDotFiles()
+    installSdkMan()
+    setupLightDM()
+    showFinalMessage()
     
 
 if __name__ == "__main__":
